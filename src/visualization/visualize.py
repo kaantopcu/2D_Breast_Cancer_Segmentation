@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def show_box(box, ax):
     x0, y0 = box[0], box[1]
     w, h = box[2] - box[0], box[3] - box[1]

@@ -2,7 +2,7 @@ import torch
 from data.load_data import load_sample_image
 from inference.model_inference import load_model_and_processor, inference
 from metrics.metrics import compute_average_metrics
-from visualization.visualize import show_mask, show_boxes_on_image
+from visualization.visualize import show_box, show_boxes_on_image
 from utils.bounding_box import get_bounding_box
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -35,3 +35,7 @@ average_metrics_sam = compute_average_metrics(groundtruth_masks, sam_seg_masks)
 
 print("MedSAM Metrics: ", average_metrics_medsam)
 print("SAM Metrics: ", average_metrics_sam)
+
+#print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
+
+#print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))

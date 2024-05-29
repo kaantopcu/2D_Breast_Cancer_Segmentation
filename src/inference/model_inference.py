@@ -1,5 +1,7 @@
 import torch
 from transformers import SamModel, SamProcessor
+from utils.bounding_box import get_bounding_box
+import numpy as np
 
 def load_model_and_processor(model_name, processor_name, device):
     model = SamModel.from_pretrained(model_name).to(device)
