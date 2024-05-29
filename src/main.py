@@ -4,6 +4,7 @@ from inference.model_inference import load_model_and_processor, inference
 from metrics.metrics import compute_average_metrics
 from visualization.visualize import show_box, show_boxes_on_image
 from utils.bounding_box import get_bounding_box
+import numpy as np
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
