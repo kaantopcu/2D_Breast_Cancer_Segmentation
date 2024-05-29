@@ -1,0 +1,7 @@
+datasets
+torch
+transformers
+numpy
+matplotlib
+Pillow
+scipy
