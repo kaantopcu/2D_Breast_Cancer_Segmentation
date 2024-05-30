@@ -5,6 +5,7 @@ from metrics.metrics import compute_average_metrics
 from visualization.visualize import show_box, show_boxes_on_image
 from utils.bounding_box import get_bounding_box
 import numpy as np
+from metrics.metrics import precision_score_,recall_score_,accuracy,dice_coef,iou,hausdorff_distance,average_symmetric_surface_distance,volumetric_similarity,specificity,matthews_corrcoef,normalized_surface_distance
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -38,5 +39,18 @@ sam_seg_pred = inference(sample_image, sam_processor, sam_model, device)
 #print("SAM Metrics: ", average_metrics_sam)
 
 print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
+
+print("Precision: ", precision_score_(sample_ground_truth_seg,sam_seg_pred))
+print("Recall: ", recall_score_(sample_ground_truth_seg,sam_seg_pred))
+print("Accuracy: ", accuracy(sample_ground_truth_seg,sam_seg_pred))
+print("Dice Coefficient: ", dice_coef(sample_ground_truth_seg,sam_seg_pred))
+print("Jaccard Index: ", iou(sample_ground_truth_seg,sam_seg_pred))
+print("Hausdorff Distance: ", hausdorff_distance(sample_ground_truth_seg,sam_seg_pred))
+print("Average Symmetric Surface Distance: ", average_symmetric_surface_distance(sample_ground_truth_seg,sam_seg_pred))
+print("Volumetric Similarity: ", volumetric_similarity(sample_ground_truth_seg,sam_seg_pred))
+print("Specificity (True Negative Rate): ", specificity(sample_ground_truth_seg,sam_seg_pred))
+print("Matthews Correlation Coefficient: ", matthews_corrcoef(sample_ground_truth_seg,sam_seg_pred))
+print("Normalized Surface Distance: ", normalized_surface_distance(sample_ground_truth_seg,sam_seg_pred))
+
 
 print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))
