@@ -184,3 +184,16 @@ def compute_average_metrics(groundtruth_masks, pred_masks):
     }
 
     return average_metrics
+
+def sample_image_metrics(groundtruth_mask, pred_mask): 
+    print("Precision: ", precision_score_(groundtruth_mask, pred_mask))
+    print("Recall: ", recall_score_(groundtruth_mask, pred_mask))
+    print("Accuracy: ", accuracy(groundtruth_mask, pred_mask))
+    print("Dice Coefficient: ", dice_coef(groundtruth_mask, pred_mask))
+    print("Jaccard Index: ", iou(groundtruth_mask, pred_mask))
+    print("Hausdorff Distance: ", hausdorff_distance(groundtruth_mask, pred_mask))
+    print("Average Symmetric Surface Distance: ", average_symmetric_surface_distance(groundtruth_mask, pred_mask))
+    print("Volumetric Similarity: ", volumetric_similarity(groundtruth_mask, pred_mask))
+    print("Specificity (True Negative Rate): ", specificity(groundtruth_mask, pred_mask))
+    print("Matthews Correlation Coefficient: ", matthews_corrcoef(groundtruth_mask, pred_mask))
+    print("Normalized Surface Distance: ", normalized_surface_distance(groundtruth_mask, pred_mask))

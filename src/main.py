@@ -1,7 +1,7 @@
 import torch
 from data.load_data import load_sample_image
 from inference.model_inference import load_model_and_processor, inference
-from metrics.metrics import compute_average_metrics
+from metrics.metrics import compute_average_metrics, sample_image_metrics
 from visualization.visualize import show_box, show_boxes_on_image
 from utils.bounding_box import get_bounding_box
 import numpy as np
@@ -38,19 +38,9 @@ sam_seg_pred = inference(sample_image, sam_processor, sam_model, device)
 #print("MedSAM Metrics: ", average_metrics_medsam)
 #print("SAM Metrics: ", average_metrics_sam)
 
-print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
-
-print("Precision: ", precision_score_(sample_ground_truth_seg,sam_seg_pred))
-print("Recall: ", recall_score_(sample_ground_truth_seg,sam_seg_pred))
-print("Accuracy: ", accuracy(sample_ground_truth_seg,sam_seg_pred))
-print("Dice Coefficient: ", dice_coef(sample_ground_truth_seg,sam_seg_pred))
-print("Jaccard Index: ", iou(sample_ground_truth_seg,sam_seg_pred))
-print("Hausdorff Distance: ", hausdorff_distance(sample_ground_truth_seg,sam_seg_pred))
-print("Average Symmetric Surface Distance: ", average_symmetric_surface_distance(sample_ground_truth_seg,sam_seg_pred))
-print("Volumetric Similarity: ", volumetric_similarity(sample_ground_truth_seg,sam_seg_pred))
-print("Specificity (True Negative Rate): ", specificity(sample_ground_truth_seg,sam_seg_pred))
-print("Matthews Correlation Coefficient: ", matthews_corrcoef(sample_ground_truth_seg,sam_seg_pred))
-print("Normalized Surface Distance: ", normalized_surface_distance(sample_ground_truth_seg,sam_seg_pred))
+#print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
 
 
-print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))
+sample_image_metrics(sample_ground_truth_seg,sam_seg_pred)
+
+#print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))
