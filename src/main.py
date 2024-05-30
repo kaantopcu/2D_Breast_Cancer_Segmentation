@@ -18,25 +18,25 @@ split = "train"
 idx = 10
 sample_image, sample_ground_truth_seg = load_sample_image(dataset_name, split, idx)
 
-# Show image with bounding boxes
+# Show sample image with bounding boxes
 input_boxes = get_bounding_box(sample_ground_truth_seg)
 show_boxes_on_image(sample_image["image"], [input_boxes])
 
-# Perform inference
+# Perform sample image inference
 medsam_seg_pred = inference(sample_image, medsam_processor, medsam_model, device)
 sam_seg_pred = inference(sample_image, sam_processor, sam_model, device)
 
-# Compute metrics
-groundtruth_masks = [np.array(load_sample_image(dataset_name, split, i)[1]) for i in range(130)]
-medsam_seg_masks = [inference(load_sample_image(dataset_name, split, i)[0], medsam_processor, medsam_model, device) for i in range(130)]
-sam_seg_masks = [inference(load_sample_image(dataset_name, split, i)[0], sam_processor, sam_model, device) for i in range(130)]
+# Compute metrics for all images
+#groundtruth_masks = [np.array(load_sample_image(dataset_name, split, i)[1]) for i in range(130)]
+#medsam_seg_masks = [inference(load_sample_image(dataset_name, split, i)[0], medsam_processor, medsam_model, device) for i in range(130)]
+#sam_seg_masks = [inference(load_sample_image(dataset_name, split, i)[0], sam_processor, sam_model, device) for i in range(130)]
 
-average_metrics_medsam = compute_average_metrics(groundtruth_masks, medsam_seg_masks)
-average_metrics_sam = compute_average_metrics(groundtruth_masks, sam_seg_masks)
+#average_metrics_medsam = compute_average_metrics(groundtruth_masks, medsam_seg_masks)
+#average_metrics_sam = compute_average_metrics(groundtruth_masks, sam_seg_masks)
 
-print("MedSAM Metrics: ", average_metrics_medsam)
-print("SAM Metrics: ", average_metrics_sam)
+#print("MedSAM Metrics: ", average_metrics_medsam)
+#print("SAM Metrics: ", average_metrics_sam)
 
-#print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
+print(compute_average_metrics(sample_ground_truth_seg, sam_seg_pred))
 
-#print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))
+print(compute_average_metrics(sample_ground_truth_seg, medsam_seg_pred))
